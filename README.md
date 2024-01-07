@@ -36,8 +36,6 @@ BUY:
 SELL:
 `https://foo.com/path/goldstar.php?id=a3&action=SELL&pair=MATICBUSD&markup=0.7&key=12345`
 
-![Running GoldStar as a signalbot](https://share.cryptowat.ch/charts/c78p54ltqnga5k7ql48g-binance-rosebusd.png)
-
 **Using GoldStar as a gridbot**
 
 GoldStar can also be used as a gridbot. In that case it will only execute BUY MARKET orders on Bybit and schedule LIMIT SELL orders with a predefined profit percentage. You will need some external tooling to call GoldStar every so many seconds or minutes. Usually a timeschedule of every minute is more than enough, an example batch file `gridbot.bat` is provider for educational purposes. A normal CURL, or if you would like to monitor the output the command line browser Lynx suffices, please see: https://lynx.invisible-island.net/
