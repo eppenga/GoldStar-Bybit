@@ -89,11 +89,10 @@ All logs reside in the 'data/' folder and are seperated per Bot ID (usually you 
 - *bot_id*_log_exchange.txt - Log of all Bybit responses (verbose logging without structure)
 - *bot_id*_log_errors.csv   - Log of all errors
 - *bot_id*_log_history.csv  - History of trades
+- *bot_id*_log_revenue.csv  - Revenue of trades in quote asset
 - *bot_id*_log_runs.csv     - Runtime log of executions
 - *bot_id*_log_settings.csv	- Exchange settings
 - *bot_id*_log_trades.csv   - All active trades (also known as bags)
-
-\* Profit includes the commission paid, it is true profit.
 
 You can also combine the log files of all Bot IDs by using the log combiner:
 `http://foo.com/path/log_combine.php?files=history|trades|errors|revenue` displays in the browser and creates files below. Displaying directly in the browser allows it to be read directly by Google Sheets for examples and files can be used for other analyses.
