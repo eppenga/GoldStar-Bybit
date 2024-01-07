@@ -1,0 +1,21 @@
+# Ignore hidden folders
+/.archive
+/.backup
+/.examples
+
+# Ignore application files
+*.backup
+config.php
+todo.txt
+test_*.*
+top_*.*
+/data
+/tdata
+/20*
+
+# Ignore /zhouaini528/bybit-php
+/vendor
+/src
+/tests
+composer.json
+composer.lock
