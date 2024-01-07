@@ -3,6 +3,9 @@
 /.backup
 /.examples
 
+# Ignore hidden files
+.gitattributes
+
 # Ignore application files
 *.backup
 config.php
