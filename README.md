@@ -3,7 +3,7 @@
 
 GoldStar automatically determines the smallest possible order value and uses that as BUY orders. This amount is based on [Bybit minimum order value](https://www.bybit.com/en/announcement-info/spot-trading-rules/) and can be multiplied with the 'mult' parameter. By default GoldStar is setup so it can't sell at a loss (unless you set profit to negative levels or due to any other unforeseen circumstance).
 
-The application relies on PHP Bybit API from JaggedSoft to place the actual orders. You need to install that application first and put the GoldStar files in the same folder. Please remember to set a key to prevent others from calling your BUY and SELL URLs because they are exposed to the outside world! Preferably also using an https connection on your server.
+The application relies on [PHP Bybit API from zhouaini528](https://github.com/zhouaini528/bybit-php/) to place the actual orders. You need to install that application first and put the GoldStar files in the same folder. Please remember to set a key to prevent others from calling your BUY and SELL URLs because they are exposed to the outside world! Preferably also using an https connection on your server.
 
 **How to install**
 
