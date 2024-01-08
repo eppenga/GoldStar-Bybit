@@ -7,8 +7,8 @@
  * GoldStar Buy and Sell bot based on signals from for example TradeView
  * or any other platform using PHP Bybit API from zhouaini528.
  * 
- * log_combine.php?files=history|trades|errors
- * Combines all the data/*_log_history|trades|errors.csv files 
+ * log_combine.php?files=history|trades|revenue|errors
+ * Combines all the data/*_log_history|trades|revenue|errors.csv files 
  * If left empty defaults to *_log_history.csv files
  * 
  **/
@@ -24,7 +24,7 @@ if (isset($_GET["files"])) {
     $logfiles = "log_history.csv";
   } elseif ($_GET["files"] == "trades") {
     $logfiles = "log_trades.csv";
-  } elseif ($_GET["files"] == "profit") {
+  } elseif ($_GET["files"] == "revenue") {
     $logfiles = "log_revenue.csv";
   } elseif ($_GET["files"] == "errors") {
     $logfiles = "log_errors.csv";

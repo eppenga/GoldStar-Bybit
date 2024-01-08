@@ -22,7 +22,7 @@ function getTradingView($symbol, $period) {
 
 	// Retrieve from TradingView
 	$curl = curl_init();
-  $postField = '{"symbols":{"tickers":["BINANCE:' . $symbol . '"],"query":{"types":[]}},"columns":["Recommend.All|' . $period . '"]}';
+  $postField = '{"symbols":{"tickers":["BYBIT:' . $symbol . '"],"query":{"types":[]}},"columns":["Recommend.All|' . $period . '"]}';
   curl_setopt_array($curl, array(
   	CURLOPT_URL => "https://scanner.tradingview.com/crypto/scan",
   	CURLOPT_RETURNTRANSFER => true,
