@@ -9,13 +9,13 @@
  * 
  * revenue.php
  * Calculates revenue of trades and outputs a CSV file
- * Run log_combine.php?files=revenue first
  **/
 
 
 // Set error reporting
 error_reporting(E_ALL & ~E_NOTICE);
 
+// Set log file
 $logfile = "data/log_revenue.csv";
 
 // Loop through revenue file for the first time and make a list of BUY orders
@@ -110,7 +110,7 @@ while (($line = fgetcsv($handle)) !== false) {
         'orderType'   => $line[6],
         'orderStatus' => $line[7],
         'revStatus'   => 'Open',
-        'qty'         => $line[9]
+        'qty'         => ($line[9] + $revenue[$orderId]['qty'])
       ];  
     }
   }

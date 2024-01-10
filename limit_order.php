@@ -18,12 +18,12 @@ $buy_fee    = $total_fees;
 $sell_fee   = $total_quantity * ($fee / 100);
 $fees       = $buy_fee + $sell_fee;
 $markups    = $total_value * ($markup / 100);
-if ($set_coin['availWithdraw'] >= $buy_fee ) {
+if ($set_coin['availWithdraw'] >= $buy_fee) {
   $sell_qty  = $total_quantity;
 } else {
   $sell_qty  = $total_quantity - $buy_fee;
 }
-$sell_value = $total_value + $fees + $markups;
+$sell_value = $total_value + ($fees * $price) + $markups;
 $sell_price = $sell_value / $total_quantity;
 
 // Debug

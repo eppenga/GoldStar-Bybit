@@ -179,8 +179,8 @@ function setCoin() {
   $data['feeExpected']    = $set_coin['feeExpected'];     // Expected fee on buy order
   $data['compFactor']     = $set_coin['compFactor'];      // Compounding factor
   $data['multiplier']     = $set_coin['multiplier'];      // Multiplier factor
-  $data['walletTotal']    = $set_coin['walletTotal'];     // Wallet total of the entire account
-  $data['availWithdraw']  = $set_coin['availWithdraw'];   // Available amount to withdraw of current coin
+  $data['walletTotal']    = $set_coin['walletTotal'];     // Wallet total of the entire account in quote asset
+  $data['availWithdraw']  = $set_coin['availWithdraw'];   // Available amount to withdraw of current coin in base asset
   
   if ($debug) {
     echo "<b>Trade Data</b><br />";
