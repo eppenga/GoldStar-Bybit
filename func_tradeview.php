@@ -69,7 +69,7 @@ function evalTradingView($symbol, $periods, $tv_recomMin, $tv_recomMax) {
   foreach ($periods as $period) {
     $recommendation    = getTradingView($symbol, $period);
     $recommendations[] = $recommendation;
-    echo " " . $period . ":" . round($recommendation, 2). ",";
+    echo " " . $period . "m:" . round($recommendation, 2). ",";
   }
 
   // Determine total recommendation

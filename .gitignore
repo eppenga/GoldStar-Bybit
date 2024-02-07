@@ -9,9 +9,9 @@
 # Ignore application files
 *.backup
 config.php
+top_*
 todo.txt
 test_*.*
-top_*.*
 /data
 /tdata
 /20*

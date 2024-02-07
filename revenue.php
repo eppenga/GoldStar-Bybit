@@ -18,6 +18,24 @@ error_reporting(E_ALL & ~E_NOTICE);
 // Set log file
 $logfile = "data/log_revenue.csv";
 
+// Load the latest revenue from log files
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+$host     = $_SERVER['HTTP_HOST'];
+$uri      = $_SERVER['REQUEST_URI'];
+$url      = $protocol . $host . $uri;
+
+// Get the path and remove the filename
+$parts        = parse_url($url);
+$path         = $parts['path'];
+$lastSlashPos = strrpos($path, '/');
+$basePath     = substr($path, 0, $lastSlashPos);
+
+// Construct the base URL with folders
+$baseUrlWithFolders = $parts['scheme'] . '://' . $parts['host'] . $basePath . '/';
+
+// Actually load the latest revenue
+$content = file_get_contents($baseUrlWithFolders . "log_combine.php?files=revenue");
+
 // Loop through revenue file for the first time and make a list of BUY orders
 $handle = fopen($logfile, "r");
 while (($line = fgetcsv($handle)) !== false) {

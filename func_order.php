@@ -51,7 +51,7 @@ function getOrder($orderId) {
 
   // Get Order data for order ID
   try {
-    $order = $api->order()->getRealTime([
+    $order = $api->order()->getHistory([
       'category' => 'spot',
       'orderId' => $orderId
     ]);
@@ -230,6 +230,7 @@ function showOrder($order) {
     echo "Quantity           : " . $order['qty'] . " " . $set_coin['quoteAsset'] . "<br />";
   } else {
     echo "Quantity           : " . $order['qty'] . " " . $set_coin['baseAsset'] . "<br />";
+    echo "Value              : " . ($order['price'] * $order['qty']) . " " . $set_coin['quoteAsset'] . "<br />";
   }
 
   if ($showFilled) {

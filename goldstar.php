@@ -73,10 +73,12 @@ echo "Markup     : " . $markup . "%<br />";
 echo "Multiplier : " . number_format($multiplier, 4) . "x<br />";
 echo "Compounding: " . number_format($set_coin['compFactor'], 4) . "x<br />";
 if ($tv_advice) {echo "TradingView: (" . $tv_recomMin . "-" . $tv_recomMax . "), (" . implode(",", $tv_periods) . ")<br />";}
-echo "Balances   : " . $set_coin['balanceBase'] . " " . $set_coin['baseAsset'] . " / " . $set_coin['balanceQuote'] . " " . $set_coin['quoteAsset'] . "<br />";
-echo "Order value: " . $set_coin['minBuyQuote'] . " " . $set_coin['quoteAsset'] . "<br />";
-echo "Total value: " . $set_coin['walletTotal'] . " " . $set_coin['quoteAsset'] . "<br />";
-echo "Command    : " . $action; if ($limit) {echo " / LIMIT";} echo "<br /><hr />";
+echo "Balances   : " . roundStep($set_coin['balanceBase'], $set_coin['quotePrecision']) . " " . $set_coin['baseAsset'] . " / ";
+echo roundStep($set_coin['balanceQuote'], $set_coin['tickSize']) . " " . $set_coin['quoteAsset'] . "<br />";
+echo "Order value: " . roundStep($set_coin['minBuyBase'], $set_coin['quotePrecision']) . " " . $set_coin['baseAsset'] . " (" . roundStep($set_coin['minBuyQuote'], $set_coin['tickSize']) . " " . $set_coin['quoteAsset'] . ")<br />";
+//echo "Order value: " . roundStep($set_coin['minBuyBase'], $set_coin['quotePrecision']) . " " . $set_coin['quoteAsset'] . "<br />";
+echo "Total value: " . roundStep($set_coin['walletTotal'], $set_coin['tickSize']) . " " . $set_coin['quoteAsset'] . "<br />";
+echo "Command    : MARKET " . $action; if ($limit) {echo " & LIMIT SELL";} echo "<br /><hr />";
 
 
 /*** BUY action ***/
@@ -86,7 +88,8 @@ if ($action == "BUY") {
   if ($limit) {include("limit_filled.php");}
 
   // Buy cycle
-  echo "<i>Trying to buy " . $set_coin['minBuyBase'] . " " . $set_coin['baseAsset'] . " at " . $price ." " . $set_coin['quoteAsset'] . "...</i><br /><hr />";
+  echo "<i>Trying to buy " . roundStep($set_coin['minBuyBase'], $set_coin['quotePrecision']) . " " . $set_coin['baseAsset'];
+  echo " at " . roundStep($price, $set_coin['tickSize']) ." " . $set_coin['quoteAsset'] . "...</i><br /><hr />";
   
   // Check if price is outside spread
   $nobuy     = false;
@@ -110,6 +113,18 @@ if ($action == "BUY") {
     echo "<i>TradingView says";
     $tv_eval = evalTradingView($pair, $tv_periods, $tv_recomMin, $tv_recomMax);
     if (!$tv_eval) {
+      $nobuy = true;
+      echo " skipping...</i><br /><hr />";
+    } else {
+      echo " buying...</i><br /><hr />";
+    }
+  }
+
+  // Check for Indicator advice
+  if (($ind_advice) && (!$nobuy)) {
+    echo "<i>Indicators say";
+    $ind_eval = evalIndicators($pair, $ind_periods, $ind_recomMin, $ind_recomMax);
+    if (!$ind_eval) {
       $nobuy = true;
       echo " skipping...</i><br /><hr />";
     } else {
@@ -288,7 +303,7 @@ if ($total_orders > 0) {
   // Report
   echo "Total orders  : " . $total_orders . "<br />";
   echo "Total quantity: " . $total_quantity . " " . $set_coin['baseAsset'] . "<br />";
-  echo "Order price   : " . ($total_value / $total_quantity) . " " . $set_coin['quoteAsset'] . "<br >";
+  echo "Order price   : " . ($total_value / $total_quantity) . " " . $set_coin['quoteAsset'] . "<br />";
   echo "Total value   : " . $total_value . " " . $set_coin['quoteAsset'] . "<br />";
   echo "Total fees    : " . ($total_fees * $price) . " " . $set_coin['quoteAsset'] . "<br />";
   echo "Average price : " . (($total_value + $total_fees) / $total_quantity)  . " " . $set_coin['quoteAsset'] . "<br />";

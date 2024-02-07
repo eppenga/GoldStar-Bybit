@@ -89,6 +89,7 @@ function setCoin() {
   // Calculate minimum order value and add 10% to prevent strange errors
   $minimumQty = $set_coin['minOrderQty'] * $price;
   $minimumAmt = $set_coin['minOrderAmt'];
+
   if ($minimumQty < $minimumAmt) {
     $minimumOrder = ($minimumAmt / $price) * 1.1;
   } else {

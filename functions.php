@@ -13,9 +13,12 @@
  **/
 
 /** Load all functions **/
-include "func_logerror.php";
-include "func_order.php";
-include "func_setcoin.php";
-include "func_tradeview.php";
+include "func_logerror.php";      // Log errors
+include "func_order.php";         // Post orders
+include "func_setcoin.php";       // Prepare data
+include "func_tradeview.php";     // Get Trading advice
+include "func_indicators.php";    // Calculate indicators
+include "func_advice.php";    // Get advice based on indicators
+include "func_klines.php";    // Get KLines used in indicator advice
 
 ?>

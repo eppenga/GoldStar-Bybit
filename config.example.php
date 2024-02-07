@@ -27,6 +27,12 @@
  *                   1m: 1, 5m: 5, 15m: 15, 30m: 30, 1h: 60, 2h: 120, 
  *                   4h: 240, 1W: 1W, 1M: 1M, 1d: leave emtpy
 
+ *** Indicators ***
+ * Same as TradingView but now GoldStar uses its own internal technical
+ * indicators to calculate the advice. All parameters work the same.
+ * This methoud is preferred over TradingView because of its speed as
+ * TradingView data can lag behind up to 15 minutes.
+
  *** Exchange keys ***
  * $exchange_key    - Exchange API key
  * $exchange_secret - Exchange API secret
@@ -47,6 +53,12 @@ $tv_advice       = false;
 $tv_recomMin     = 0.25;
 $tv_recomMax     = 1.00;
 $tv_periods      = array(15, 60);
+
+// Indicators
+$ind_advice       = true;
+$ind_recomMin     = 0.25;
+$ind_recomMax     = 1.00;
+$ind_periods      = array(1, 5, 15);
 
 // Exchange keys (ALWAYS KEEP THESE SECRET!)
 $exchange_key    = "12345";

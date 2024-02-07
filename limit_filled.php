@@ -61,7 +61,7 @@ while (($line = fgetcsv($handle)) !== false) {
     
     // Get order data
     $checkOrder = getOrder($limit_id);
-    //echo "Checking order ID: " . $limit_id . "\n";
+    //echo "Checking order ID: " . $limit_id . " with status " . $checkOrder['orderStatus'] . "\n";
 
     // Add a pause of 0.2 seconds to prevent rate limit API errors, limit is 0.05 seconds per request
     if (($amountOrders > 10) && ($limit_check == true)) {
