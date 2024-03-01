@@ -78,7 +78,7 @@ while (($line = fgetcsv($handle)) !== false) {
       $profit = $checkOrder['cumExecValue'] - $line[12] - $line[13] - $checkOrder['cumExecFee'];
       
       // Report
-      echo "<i>LIMIT order " . $checkOrder['orderId'] . " was filled!</i><br /><br />";
+      echo "<i>LIMIT Order " . $checkOrder['orderId'] . " was filled!</i><br /><br />";
 
       echo "<b>Matching BUY trade</b><br />";
       echo "Date    : " . $line[0] . "<br />";
@@ -88,7 +88,7 @@ while (($line = fgetcsv($handle)) !== false) {
       echo "Value   : " . $line[12] . "<br />";
       echo "Fee     : " . $line[13] . "<br /><br />";
 
-      echo "<b>Matching LIMIT trade</b><br />";
+      echo "<b>Matching LIMIT Trade</b><br />";
       echo "Date    : " . $checkOrder['createdTime'] . "<br />";
       echo "Order ID: " . $checkOrder['orderId'] . "<br />";
       echo "Quantity: " . $checkOrder['cumExecQty'] . "<br />";

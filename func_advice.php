@@ -126,7 +126,7 @@ function indicatorResults($symbol, $interval) {
   if (empty($bsn)) {$bsn = 'N';}  
   $advice[$symbol]['adx'] = [$adx, $bsn, 'O'];
 
-  // Advice for Awesome Indicator (to be implemented)
+  // Advice for Awesome Indicator
   unset($bsn);
   if (end($awesome) >= 0) {
     if (checkHL($awesome)) {$bsn = 'B';}  

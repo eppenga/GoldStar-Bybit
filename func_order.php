@@ -49,9 +49,9 @@ function getOrder($orderId) {
   // Declare some variables as global
   global $api, $set_coin, $id, $debug;
 
-  // Get Order data for order ID
+  // Get Order data for order ID, first via realtime query
   try {
-    $order = $api->order()->getHistory([
+    $order = $api->order()->getRealTime([
       'category' => 'spot',
       'orderId' => $orderId
     ]);
@@ -61,11 +61,27 @@ function getOrder($orderId) {
   }
   logAPI($order, "getOrder");
 
+  // Check if we have a valid result, if not query via history
+  if (empty($order['result']['list'])) {
+    if ($debug) {echo "Order ID not found via getRealTime, now trying getHistory!<br />";}
+    try {
+      $order = $api->order()->getHistory([
+        'category' => 'spot',
+        'orderId' => $orderId
+      ]);
+    } catch (\Exception $e) {
+      $message = $e->getMessage();
+      doError($message, $id, true);
+    }
+    logAPI($order, "getOrder");
+  }
+
   if ($debug) {
-    echo "<b>Result of getOrder</b><br />";
+    echo "<b>Result of getOrder with ID: $orderId</b><br />";
     print_r($order);
   }
 
+  // Write up order data
   $transaction = [
     'createdTime'   => $order['result']['list'][0]['createdTime'],   // Order created timestamp (ms)
     'updatedTime'   => $order['result']['list'][0]['updatedTime'],   // Order updated timestamp (ms)

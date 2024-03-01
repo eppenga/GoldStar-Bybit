@@ -78,7 +78,7 @@ echo roundStep($set_coin['balanceQuote'], $set_coin['tickSize']) . " " . $set_co
 echo "Order value: " . roundStep($set_coin['minBuyBase'], $set_coin['quotePrecision']) . " " . $set_coin['baseAsset'] . " (" . roundStep($set_coin['minBuyQuote'], $set_coin['tickSize']) . " " . $set_coin['quoteAsset'] . ")<br />";
 //echo "Order value: " . roundStep($set_coin['minBuyBase'], $set_coin['quotePrecision']) . " " . $set_coin['quoteAsset'] . "<br />";
 echo "Total value: " . roundStep($set_coin['walletTotal'], $set_coin['tickSize']) . " " . $set_coin['quoteAsset'] . "<br />";
-echo "Command    : MARKET " . $action; if ($limit) {echo " & LIMIT SELL";} echo "<br /><hr />";
+echo "Command    : "; if ($action <> "CHECK") {echo "MARKET ";} echo $action; if ($limit) {echo " & LIMIT SELL";} echo "<br /><hr />";
 
 
 /*** BUY action ***/
@@ -301,13 +301,13 @@ echo "<b>Results</b><br />";
 if ($total_orders > 0) {
   
   // Report
-  echo "Total orders  : " . $total_orders . "<br />";
-  echo "Total quantity: " . $total_quantity . " " . $set_coin['baseAsset'] . "<br />";
-  echo "Order price   : " . ($total_value / $total_quantity) . " " . $set_coin['quoteAsset'] . "<br />";
-  echo "Total value   : " . $total_value . " " . $set_coin['quoteAsset'] . "<br />";
-  echo "Total fees    : " . ($total_fees * $price) . " " . $set_coin['quoteAsset'] . "<br />";
-  echo "Average price : " . (($total_value + $total_fees) / $total_quantity)  . " " . $set_coin['quoteAsset'] . "<br />";
-  if ($action == "SELL") {echo "Total profit  : " . $total_profit . " " . $set_coin['quoteAsset'] . "<br />";}
+  echo "Total Orders  : " . $total_orders . "<br />";
+  echo "Total Quantity: " . $total_quantity . " " . $set_coin['baseAsset'] . "<br />";
+  echo "Order Price   : " . ($total_value / $total_quantity) . " " . $set_coin['quoteAsset'] . "<br />";
+  echo "Total Value   : " . $total_value . " " . $set_coin['quoteAsset'] . "<br />";
+  echo "Total Fees    : " . ($total_fees * $price) . " " . $set_coin['quoteAsset'] . "<br />";
+  echo "Average Price : " . (($total_value + $total_fees) / $total_quantity)  . " " . $set_coin['quoteAsset'] . "<br />";
+  if ($action == "SELL") {echo "Total Profit  : " . $total_profit . " " . $set_coin['quoteAsset'] . "<br />";}
   echo "<br />";
 } else {
   echo "<i>No orders executed...</i><br />";
