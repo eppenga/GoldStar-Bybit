@@ -135,7 +135,7 @@ function setCoin() {
   }
 
   // Correct for multiplier
-  $set_coin['multiplier']  = $multiplier;
+  $set_coin['multiplier'] = $multiplier;
   $set_coin['minBuyBase'] = $set_coin['minBuyBase'] * $multiplier;
   
   // Calculate minimum order value in quote asset

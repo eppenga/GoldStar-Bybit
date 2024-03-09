@@ -72,6 +72,7 @@ echo "Spread     : " . $spread . "%<br />";
 echo "Markup     : " . $markup . "%<br />";
 echo "Multiplier : " . number_format($multiplier, 4) . "x<br />";
 echo "Compounding: " . number_format($set_coin['compFactor'], 4) . "x<br />";
+echo "Magnify    : " . number_format(($multiplier * $set_coin['compFactor']), 4) . "x<br />";
 if ($tv_advice) {echo "TradingView: (" . $tv_recomMin . "-" . $tv_recomMax . "), (" . implode(",", $tv_periods) . ")<br />";}
 echo "Balances   : " . roundStep($set_coin['balanceBase'], $set_coin['quotePrecision']) . " " . $set_coin['baseAsset'] . " / ";
 echo roundStep($set_coin['balanceQuote'], $set_coin['tickSize']) . " " . $set_coin['quoteAsset'] . "<br />";
